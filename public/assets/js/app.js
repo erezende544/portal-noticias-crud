@@ -6,7 +6,8 @@
  */
 
 // URL base da API - conexão com JSON Server
-const API_URL = "http://localhost:3030/noticias";
+const replit = "https://36a02b70-e658-47ac-a9c4-4cedb52eb3ab-00-337khfoeqj8ue.picard.replit.dev/";
+const url = replit + "noticias/" + id;
 
 /**
  * CARREGA HEADER EM TODAS AS PÁGINAS
