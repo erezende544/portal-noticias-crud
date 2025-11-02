@@ -1,17 +1,6 @@
 {
   "noticias": [
     {
-      "titulo": "Prefeitura Lança Novo Plano de Mobilidade Urbana",
-      "descricao": "Novo plano visa melhorar o transporte público e reduzir o trânsito na cidade.",
-      "conteudo": "A Prefeitura apresentou nesta segunda-feira um novo plano de mobilidade urbana que inclui corredores exclusivos de ônibus, ciclovias e a requalificação de vias principais.\n\nO projeto será implementado ao longo dos próximos dois anos e deve melhorar o transporte público e reduzir o congestionamento em áreas centrais.\n\nAlém disso, haverá campanhas educativas para incentivar o uso de transporte coletivo e meios sustentáveis de locomoção.",
-      "categoria": "Cidades",
-      "autor": "Joana Ribeiro",
-      "imagem_pincipal": "https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg",
-      "destaque": false,
-      "data": "2025-11-01",
-      "id": "1"
-    },
-    {
       "titulo": "Tecnologia 6G Está em Desenvolvimento",
       "descricao": "Pesquisadores anunciam avanços na próxima geração de redes móveis.",
       "conteudo": "Universidades e empresas de telecomunicação já estão testando tecnologias que poderão compor a infraestrutura do 6G.\n\nA expectativa é que a nova geração seja 100 vezes mais rápida que o 5G e permita uma integração total entre dispositivos inteligentes e cidades conectadas.\n\nEstudos apontam que o 6G deve chegar ao mercado entre 2030 e 2032.",
@@ -32,17 +21,6 @@
       "destaque": false,
       "data": "2025-11-01",
       "id": "3"
-    },
-    {
-      "titulo": "Acordo Histórico da COP30 Define Metas Ambitiosas para Energia Renovável",
-      "descricao": "Líderes globais em Belém (PA) chegam a um consenso inédito, estabelecendo o prazo de 2040 para o fim da dependência de combustíveis fósseis e um aumento exponencial no investimento em solar e eólica.",
-      "conteudo": "A 30ª Conferência das Nações Unidas sobre Mudança do Clima (COP30), sediada no Brasil, encerrou-se nesta sexta-feira com a aprovação do 'Acordo de Belém', um documento que está sendo aclamado como um divisor de águas na política climática internacional. O ponto central do acordo é o compromisso de 195 países em descarbonizar as matrizes energéticas até 2040.\n\nO texto final não apenas exige o fim de novos investimentos em carvão, petróleo e gás, mas também estabelece um fundo global de $5 trilhões para auxiliar na transição energética de países em desenvolvimento. A delegação brasileira, elogiada por sua diplomacia, garantiu a inclusão de cláusulas que protegem a biodiversidade da Amazônia e promovem a bioeconomia.\n\nO Secretário-Geral da ONU declarou em coletiva: 'É um dia de esperança. Pela primeira vez, a comunidade internacional alinha ambição com ação e recursos concretos. A jornada é longa, mas o caminho está traçado.' A implementação das metas será monitorada por uma nova Agência Internacional de Transição Climática (AITC), com sede em Belém, iniciando suas atividades em janeiro de 2026.",
-      "categoria": "Cultura",
-      "autor": "Equipe de Redação Global",
-      "imagem_pincipal": "https://brasil.un.org/sites/default/files/styles/featured_image/public/2025-09/COP30.png?itok=O8eWJ9Ra",
-      "destaque": true,
-      "data": "2025-11-01",
-      "id": "062f"
     }
   ]
 }
