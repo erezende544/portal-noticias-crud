@@ -1,0 +1,16 @@
+{
+  "name": "portal-noticias-crud",
+  "version": "1.0.0",
+  "description": "Portal de notícias com CRUD completo",
+  "main": "app.js",
+  "scripts": {
+    "server": "json-server --watch db/db.json --port 3030 --host 0.0.0.0",
+    "dev": "live-server public --port=3000 --host=0.0.0.0",
+    "start": "concurrently \"npm run server\" \"npm run dev\""
+  },
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "json-server": "^0.17.4",
+    "live-server": "^1.2.2"
+  }
+}
