@@ -1,3 +1,5 @@
+import { API_BASE } from './utils.js';
+
 // Verifica se usuário está logado
 export function isLoggedIn() {
   return localStorage.getItem("LOGGED_USER_ID") !== null;

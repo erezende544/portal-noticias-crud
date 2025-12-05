@@ -101,14 +101,21 @@ export function loadHeader() {
   function performSearch(term) {
     if (!term.trim()) return;
 
-    if (window.location.pathname.includes('noticia.html')) {
-      if (typeof window.performNewsSearch === 'function') {
+    // Já estamos na home?
+    if (
+      window.location.pathname.includes("index.html") ||
+      window.location.pathname.endsWith("/") ||
+      window.location.pathname === "/"
+    ) {
+      if (typeof window.performNewsSearch === "function") {
         window.performNewsSearch(term);
       }
     } else {
-      window.location.href = `noticia.html?search=${encodeURIComponent(term)}`;
+      window.location.href = `index.html?search=${encodeURIComponent(term)}`;
     }
   }
+
+
 
   // Desktop
   if (searchBtn && searchInput) {

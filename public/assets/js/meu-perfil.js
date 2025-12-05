@@ -1,4 +1,4 @@
-import { JSON } from './utils.js';
+import { API_BASE } from './utils.js';
 
 // Obter ID do usuário atual
 const CURRENT_USER_ID = localStorage.getItem("LOGGED_USER_ID");

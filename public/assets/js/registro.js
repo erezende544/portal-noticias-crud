@@ -1,4 +1,4 @@
-import { JSON } from './utils.js';
+import { API_BASE } from './utils.js';
 
 async function handleRegister(event) {
   event.preventDefault();

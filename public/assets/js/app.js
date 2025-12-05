@@ -1,15 +1,18 @@
-import { JSON } from "./utils.js";
+import { API_BASE } from './utils.js';
 
-const API_URL = JSON + "noticias";
+const API_URL = API_BASE + "noticias";
 const CURRENT_USER_ID = localStorage.getItem("LOGGED_USER_ID");
 
-// ===== FUNÇÕES UTILITÁRIAS =====
+// ===== CORRIGE JSON GLOBAL =====
+const GLOBAL_JSON = window.JSON;
+
+// ===== UTILS =====
 function formatarData(dataString) {
   if (!dataString) return '';
   try {
     const [ano, mes, dia] = dataString.split('-');
     return `${dia}/${mes}/${ano}`;
-  } catch (error) {
+  } catch {
     return dataString;
   }
 }
@@ -18,16 +21,17 @@ function isAdmin() {
   return localStorage.getItem("LOGGED_USER_ADMIN") === "true";
 }
 
-// ===== FUNÇÕES DE FAVORITOS =====
+// ===== FAVORITOS =====
 async function isFavorite(noticiaId) {
   if (!CURRENT_USER_ID) return false;
 
   try {
-    const response = await fetch(`${JSON}favoritos?usuarioId=${CURRENT_USER_ID}&noticiaId=${noticiaId}`);
-    if (!response.ok) return false;
-    const favorites = await response.json();
-    return favorites.length > 0;
-  } catch (error) {
+    const url = `${API_BASE}favoritos?usuarioId=${CURRENT_USER_ID}&noticiaId=${noticiaId}`;
+    const res = await fetch(url);
+    if (!res.ok) return false;
+    const data = await res.json();
+    return data.length > 0;
+  } catch {
     return false;
   }
 }
@@ -40,184 +44,168 @@ async function toggleFavorite(noticiaId) {
   }
 
   try {
-    const isFav = await isFavorite(noticiaId);
+    const favUrl = `${API_BASE}favoritos?usuarioId=${CURRENT_USER_ID}&noticiaId=${noticiaId}`;
+    const res = await fetch(favUrl);
+    const existing = await res.json();
 
-    if (isFav) {
-      const response = await fetch(`${JSON}favoritos?usuarioId=${CURRENT_USER_ID}&noticiaId=${noticiaId}`);
-      const favorites = await response.json();
-      if (favorites.length > 0) {
-        await fetch(`${JSON}favoritos/${favorites[0].id}`, { method: 'DELETE' });
-        alert("Removido dos favoritos!");
-      }
+    if (existing.length > 0) {
+      await fetch(`${API_BASE}favoritos/${existing[0].id}`, { method: "DELETE" });
+      alert("Removido dos favoritos!");
     } else {
-      await fetch(`${JSON}favoritos`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          usuarioId: CURRENT_USER_ID,
-          noticiaId: noticiaId,
-          data: new Date().toISOString().split('T')[0]
+      await fetch(`${API_BASE}favoritos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: GLOBAL_JSON.stringify({
+          usuarioId: Number(CURRENT_USER_ID),
+          noticiaId: Number(noticiaId),
+          data: new Date().toISOString().split("T")[0]
         })
       });
       alert("Adicionado aos favoritos!");
     }
 
-    carregarHome();
-  } catch (error) {
+    if (window.location.pathname.includes("index.html")) {
+      carregarHome();
+    }
+
+  } catch {
     alert("Erro ao atualizar favorito.");
   }
 }
 
-// ===== FUNÇÃO PRINCIPAL =====
-async function carregarHome() {
-  const containerDestaques = document.getElementById('destaques');
-  const containerNoticias = document.getElementById('listaNoticias');
-
-  try {
-    // Mostrar loading
-    containerNoticias.innerHTML = `
-      <div class="loading">
-        <div class="spinner"></div>
-        <p>Carregando notícias...</p>
-      </div>
-    `;
-
-    const res = await fetch(API_URL);
-    const noticias = await res.json();
-
-    // ===== CARROSSEL FULL-WIDTH =====
-    const destaques = noticias.filter(n => n.destaque);
-    if (destaques.length > 0) {
-      let carouselInner = '';
-      destaques.forEach((item, index) => {
-        carouselInner += `
-      <div class="carousel-item ${index === 0 ? 'active' : ''}">
-        <img src="${item.imagem_pincipal || 'https://via.placeholder.com/1200x500/0d6efd/ffffff?text=Destaque'}" 
-             class="carousel-image d-block w-100" 
-             alt="${item.titulo}">
-        <div class="carousel-caption">
-          <h5 class="animate__animated animate__fadeInDown">${item.titulo}</h5>
-          <p class="animate__animated animate__fadeInUp animate__delay-1s">${item.descricao}</p>
-          <a href="detalhes.html?id=${item.id}" 
-             class="btn btn-primary btn-lg animate__animated animate__bounceIn animate__delay-2s">
-            Ler mais
-          </a>
-        </div>
-      </div>
-    `;
-      });
-
-      containerDestaques.innerHTML = `
-    <div class="carousel-fullwidth">
-      <div id="carouselDestaques" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-        <div class="carousel-inner">${carouselInner}</div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-          <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-          <span class="visually-hidden">Próximo</span>
-        </button>
-      </div>
-    </div>
-  `;
-    }
-
-    // ===== GRID DE NOTÍCIAS (3 por linha) =====
-    await renderNews(noticias);
-
-  } catch (error) {
-    console.error("Erro:", error);
-    containerNoticias.innerHTML = `
-      <div class="empty-state">
-        <i class="bi bi-exclamation-triangle"></i>
-        <h3>Erro ao carregar</h3>
-        <p>Não foi possível carregar as notícias.</p>
-      </div>
-    `;
-  }
-}
-
-async function renderNews(newsList) {
-  const containerNoticias = document.getElementById('listaNoticias');
-
-  if (!newsList || newsList.length === 0) {
-    containerNoticias.innerHTML = `
-      <div class="empty-state">
-        <i class="bi bi-newspaper"></i>
-        <h3>Nenhuma notícia</h3>
-        <p>Não há notícias para exibir.</p>
-      </div>
-    `;
-    return;
-  }
-
-  // Verificar favoritos
-  const favoritesPromises = newsList.map(noticia => isFavorite(noticia.id));
-  const favoritesStatus = await Promise.all(favoritesPromises);
-
-  containerNoticias.innerHTML = `
-    <div class="news-grid">
-      ${newsList.map((noticia, index) => `
-        <div class="news-card fade-in">
-          <div class="news-image-wrapper">
-            <img src="${noticia.imagem_pincipal || 'https://via.placeholder.com/400x300/6c757d/ffffff?text=Notícia'}" 
-                 alt="${noticia.titulo}">
-          </div>
-          <div class="news-content">
-            <h3 class="news-title">${noticia.titulo || 'Sem título'}</h3>
-            <p class="news-description">${noticia.descricao || 'Sem descrição'}</p>
-            
-            <div class="news-meta">
-              <span class="news-category">${noticia.categoria || 'Geral'}</span>
-              <span class="news-date">${formatarData(noticia.data)}</span>
-            </div>
-            
-            <div class="news-actions">
-              <a href="detalhes.html?id=${noticia.id}" class="btn-read">Ler mais</a>
-              
-              <button onclick="toggleFavorite('${noticia.id}')" class="btn-icon btn-fav ${favoritesStatus[index] ? 'active' : ''}">
-                <i class="bi ${favoritesStatus[index] ? 'bi-heart-fill' : 'bi-heart'}"></i>
-              </button>
-              
-              ${isAdmin() ? `
-                <a href="cadastro_noticias.html?id=${noticia.id}" class="btn-icon btn-edit">
-                  <i class="bi bi-pencil"></i>
-                </a>
-                <button onclick="excluirNoticia('${noticia.id}')" class="btn-icon btn-delete">
-                  <i class="bi bi-trash"></i>
-                </button>
-              ` : ''}
-            </div>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-}
-
-// ===== FUNÇÃO DE EXCLUSÃO =====
+// ===== EXCLUIR =====
 async function excluirNoticia(id) {
   if (!isAdmin()) {
     alert("Acesso restrito para administradores.");
     return;
   }
-
   if (!confirm("Tem certeza que deseja excluir esta notícia?")) return;
 
   try {
-    await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-    alert("Notícia excluída com sucesso!");
-    carregarHome();
-  } catch (error) {
+    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    alert("Notícia excluída!");
+    if (window.location.pathname.includes("index.html")) carregarHome();
+  } catch {
     alert("Erro ao excluir notícia.");
   }
 }
 
-// ===== EXPORTAR =====
+// ===== RENDER =====
+async function renderNews(newsList) {
+  const container = document.getElementById("listaNoticias");
+  if (!container) return;
+
+  if (!newsList || newsList.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <i class="bi bi-newspaper"></i>
+        <h3>Nenhuma notícia</h3>
+      </div>`;
+    return;
+  }
+
+  const favs = await Promise.all(newsList.map(n => isFavorite(n.id)));
+
+  container.innerHTML = `
+    <div class="news-grid">
+      ${newsList.map((noticia, i) => `
+        <div class="news-card fade-in">
+          <div class="news-image-wrapper">
+            <img src="${noticia.imagem_pincipal || 'https://via.placeholder.com/400'}" loading="lazy">
+          </div>
+
+          <div class="news-content">
+            <h3>${noticia.titulo}</h3>
+            <p>${noticia.descricao}</p>
+
+            <div class="news-meta">
+              <span>${noticia.categoria}</span>
+              <span>${formatarData(noticia.data)}</span>
+            </div>
+
+            <div class="news-actions">
+              <a href="detalhes.html?id=${noticia.id}" class="btn-read">Ler mais</a>
+
+              <button onclick="toggleFavorite('${noticia.id}')" 
+                class="btn-icon btn-fav ${favs[i] ? "active" : ""}">
+                <i class="bi ${favs[i] ? "bi-heart-fill" : "bi-heart"}"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderCarousel(destaques) {
+  const container = document.getElementById('destaques');
+  if (!container || destaques.length === 0) return;
+
+  const inner = destaques.map((item, i) => `
+    <div class="carousel-item ${i === 0 ? "active" : ""}">
+      <img src="${item.imagem_pincipal}" class="carousel-image">
+      <div class="carousel-caption">
+        <h5>${item.titulo}</h5>
+        <p>${item.descricao}</p>
+        <a href="detalhes.html?id=${item.id}" class="btn btn-primary btn-lg">Ler mais</a>
+      </div>
+    </div>
+  `).join("");
+
+  container.innerHTML = `
+    <div class="carousel-fullwidth">
+      <div id="carouselDestaques" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">${inner}</div>
+      </div>
+    </div>
+  `;
+}
+
+// ===== HOME =====
+async function carregarHome() {
+  const list = document.getElementById("listaNoticias");
+  if (!list) return;
+
+  list.innerHTML = `
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Carregando notícias...</p>
+    </div>`;
+
+  try {
+    const res = await fetch(API_URL);
+    const noticias = await res.json();
+
+    renderCarousel(noticias.filter(n => n.destaque));
+    await renderNews(noticias);
+  } catch {
+    list.innerHTML = `<h3>Erro ao carregar notícias</h3>`;
+  }
+}
+
+window.performNewsSearch = async function (term) {
+  const res = await fetch(API_URL);
+  const noticias = await res.json();
+
+  const filtradas = noticias.filter(n =>
+    n.titulo.toLowerCase().includes(term.toLowerCase()) ||
+    n.descricao.toLowerCase().includes(term.toLowerCase())
+  );
+
+  renderNews(filtradas);
+};
+
+// ===== GLOBAL =====
 window.toggleFavorite = toggleFavorite;
 window.excluirNoticia = excluirNoticia;
 
-// ===== INICIALIZAR =====
-document.addEventListener('DOMContentLoaded', carregarHome);
+document.addEventListener("DOMContentLoaded", () => {
+  if (
+    window.location.pathname.includes("index.html") ||
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("/")
+  ) {
+    carregarHome();
+  }
+});
