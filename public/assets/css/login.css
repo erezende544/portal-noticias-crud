@@ -1,0 +1,50 @@
+/* Estilos básicos para login */
+.login-body {
+    background-color: #f8fafc;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.card {
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.btn-login {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    color: white;
+}
+
+.paw-svg {
+    width: 24px;
+    height: 24px;
+}
+
+.form-control {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+}
+
+.form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}

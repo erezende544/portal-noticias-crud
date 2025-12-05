@@ -1,0 +1,1 @@
+export const JSON = "http://localhost:3030/";

@@ -18,9 +18,26 @@
       "categoria": "Cultura",
       "autor": "Ana Clara Silva",
       "imagem_pincipal": "https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg",
-      "destaque": false,
-      "data": "2025-11-01",
+      "destaque": true,
+      "data": "2025-12-05",
       "id": "3"
     }
-  ]
-}
+  ],
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "Admin",
+      "email": "admin@email.com",
+      "senha": "123456",
+      "admin": true
+    },
+    {
+      "id": "2",
+      "nome": "Usuário Comum",
+      "email": "usuario@email.com",
+      "senha": "123456",
+      "admin": false
+    }
+  ],
+  "favoritos": []
+} 

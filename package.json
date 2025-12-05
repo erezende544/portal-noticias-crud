@@ -1,16 +1,17 @@
 {
-  "name": "portal-noticias-crud",
+  "name": "portal-noticias",
   "version": "1.0.0",
-  "description": "Portal de notícias com CRUD completo",
-  "main": "app.js",
+  "description": "Portal de Notícias com JSON Server",
+  "main": "server.js",
   "scripts": {
-    "server": "json-server --watch db/db.json --port 3030 --host 0.0.0.0",
-    "dev": "live-server public --port=3000 --host=0.0.0.0",
-    "start": "concurrently \"npm run server\" \"npm run dev\""
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
-    "concurrently": "^7.6.0",
-    "json-server": "^0.17.4",
-    "live-server": "^1.2.2"
+    "cors": "^2.8.5",
+    "json-server": "^0.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
