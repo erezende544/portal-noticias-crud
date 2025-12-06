@@ -1,4 +1,5 @@
 import { API_BASE } from './utils.js';
+const JSON = API_BASE;
 
 async function handleLogin(event) {
   event.preventDefault();

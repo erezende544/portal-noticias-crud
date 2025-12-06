@@ -1,6 +1,6 @@
 import { API_BASE } from './utils.js';
 
-const API_URL = `${API_BASE}noticias`;
+const API_URL = API_BASE + "noticias";
 
 // ========== buscar notícias ==========
 async function buscarNoticias(termo) {
@@ -48,4 +48,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   const resultados = await buscarNoticias(termo);
   renderResultados(resultados);
 });
-S

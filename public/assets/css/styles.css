@@ -335,7 +335,7 @@ body {
 .author-avatar {
   width: 120px;
   height: 120px;
-  background: linear-gradient(135deg, var(--primary), #6610f2);
+  background: url(/public/assets/images/ft-perfil.png);
   border-radius: 50%;
   display: flex;
   align-items: center;
