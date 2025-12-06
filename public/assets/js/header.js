@@ -49,6 +49,9 @@ export function loadHeader() {
             <li class="nav-item">
               <a class="nav-link" href="noticia.html">Todas Notícias</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="calendar.html">Calendário</a>
+            </li>
           </ul>
 
           <!-- Usuário à direita -->

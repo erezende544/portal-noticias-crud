@@ -1,26 +1,59 @@
 {
   "noticias": [
     {
-      "titulo": "Tecnologia 6G Está em Desenvolvimento",
-      "descricao": "Pesquisadores anunciam avanços na próxima geração de redes móveis.",
-      "conteudo": "Universidades e empresas de telecomunicação já estão testando tecnologias que poderão compor a infraestrutura do 6G.\n\nA expectativa é que a nova geração seja 100 vezes mais rápida que o 5G e permita uma integração total entre dispositivos inteligentes e cidades conectadas.\n\nEstudos apontam que o 6G deve chegar ao mercado entre 2030 e 2032.",
-      "categoria": "Tecnologia",
-      "autor": "Carlos Mendes",
-      "imagem_pincipal": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
+      "id": "f1a7",
+      "titulo": "Horner Projeta Temporada \"Mais Apertada\" em 2025, com Ferrari e McLaren no Bolso",
+      "descricao": "Chefão da Red Bull acredita que a supremacia da equipe será desafiada como nunca na próxima temporada da F1, citando evolução técnica dos rivais.",
+      "conteudo": "Em entrevista coletiva no paddock de Silverstone, Christian Horner, chefe da equipe Red Bull Racing, mostrou respeito aos rivais ao projetar a temporada 2025 da Fórmula 1. \"Os dados de desenvolvimento que temos visto da Ferrari e da McLaren são impressionantes. Eles fecharam a lacuna de forma significativa neste ano e estamos esperando uma batalha muito mais apertada no próximo campeonato\", declarou Horner. Ele destacou a evolução aerodinâmica da McLaren e a confiabilidade conquistada pela Ferrari como fatores cruciais. Apesar do tom cauteloso, Horner reafirmou a confiança no trabalho de sua equipe e na dupla Max Verstappen e Sergio Pérez para manter o título. A pré-temporada de 2025, que começa em fevereiro, é aguardada com grande expectativa por especialistas.",
+      "categoria": "Esportes - Fórmula 1",
+      "autor": "Felipe Costa",
+      "imagem_pincipal": "https://images.pexels.com/photos/29327951/pexels-photo-29327951.jpeg",
       "destaque": true,
-      "data": "2025-11-01",
-      "id": "2"
+      "data": "2025-12-06"
     },
     {
-      "titulo": "Festival de Música Reúne Mais de 50 Mil Pessoas",
-      "descricao": "Evento cultural movimentou o final de semana com atrações nacionais e internacionais.",
-      "conteudo": "Durante três dias, o festival contou com mais de 40 artistas e promoveu atividades culturais e gastronômicas, com impacto positivo no turismo local.\n\nA organização estima que o evento gerou mais de 10 milhões de reais em movimentação econômica e atraiu visitantes de várias regiões do país.\n\nA edição do próximo ano já está confirmada com novas atrações e parcerias.",
-      "categoria": "Cultura",
-      "autor": "Ana Clara Silva",
-      "imagem_pincipal": "https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg",
+      "id": "p0l8",
+      "titulo": "Defesa de Bolsonaro Recorre ao STF Após Prisão ser Decretada por Crimes de Responsabilidade",
+      "descricao": "Advogados do ex-presidente contestam legalidade da decisão do Tribunal de Contas da União que levou à prisão preventiva, alegando motivação política.",
+      "conteudo": "A defesa do ex-presidente Jair Bolsonaro ingressou com um habeas corpus no Supremo Tribunal Federal (STF) na manhã desta sexta-feira, pedindo a revogação imediata de sua prisão preventiva. A decisão, proferida pelo Tribunal de Contas da União (TCU), baseou-se em supostos crimes de responsabilidade fiscal e atos de improbidade administrativa durante a gestão de verbas da pandemia. No recurso, os advogados argumentam que o TCU extrapolou sua competência, que seria meramente administrativa, e que a prisão é um \"exagero punitivo\" sem precedentes para o tipo de acusação. Eles também alegam que a medida \"serve a um projeto de perseguição política\". O ministro-relator do caso no STF ainda não se manifestou. Enquanto isso, Bolsonaro cumpre prisão em regime fechado em Brasília.",
+      "categoria": "Política Brasileira",
+      "autor": "Ana Beatriz Rocha",
+      "imagem_pincipal": "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg",
       "destaque": true,
-      "data": "2025-12-05",
-      "id": "3"
+      "data": "2025-12-04"
+    },
+    {
+      "id": "tec9",
+      "titulo": "Estudo Revela que Inteligência Artificial Pode Afetar até 40% dos Empregos Globais, Diz FMI",
+      "descricao": "Novo relatório do Fundo Monetário Internacional alerta para os impactos desiguais da IA no mercado de trabalho, exigindo políticas de adaptação urgentes.",
+      "conteudo": "Um relatório abrangente divulgado pelo Fundo Monetário Internacional (FMI) nesta semana traz um alerta sério: cerca de 40% dos empregos em todo o mundo serão afetados pela ascensão da Inteligência Artificial. A análise aponta que, em economias avançadas, até 60% das vagas podem sofrer impacto, sendo que metade delas poderá experimentar redução na demanda por mão de obra. A diretora-gerente do FMI, Kristalina Georgieva, pediu que países criem \"redes de segurança social abrangentes\" e programas de requalificação para a força de trabalho. O relatório também destaca o risco de a IA ampliar a desigualdade, beneficiando mais aqueles com alta qualificação e capazes de aproveitar a tecnologia. O documento deve ser um dos temas centrais do Fórum Econômico Mundial deste ano.",
+      "categoria": "Economia & Tecnologia",
+      "autor": "Rodrigo Mendes",
+      "imagem_pincipal": "https://images.pexels.com/photos/965345/pexels-photo-965345.jpeg",
+      "destaque": true,
+      "data": "2025-11-28"
+    },
+    {
+      "id": "esp2",
+      "titulo": "Ônibus Espacial Privado da SpaceX Conclui Missão Secreta de 6 Meses para a Força Espacial dos EUA",
+      "descricao": "A espaçonave X-37B pousou com sucesso após uma longa missão orbital, levantando especulações sobre seus objetivos tecnológicos e de defesa.",
+      "conteudo": "O ônibus espacial robótico X-37B, operado pela Força Espacial dos Estados Unidos e lançado pelo foguete Falcon Heavy da SpaceX, aterrissou com sucesso no Centro Espacial Kennedy na madrugada de hoje. A missão, batizada de OTV-7, durou exatos 6 meses e 10 dias, e seus objetivos específicos são classificados. Analistas do setor aeroespacial especulam que a missão incluiu testes de novos sistemas de sensores em órbita, experimentos de coleta de energia solar para transmissão à Terra e estudos sobre os efeitos da radiação de longa duração em materiais avançados. A China, que possui um veículo similar, já se pronunciou questionando a \"militarização do espaço\". A SpaceX não comentou os detalhes, limitando-se a confirmar o sucesso da fase de lançamento da missão.",
+      "categoria": "Ciência & Espaço",
+      "autor": "Carla Vitório",
+      "imagem_pincipal": "https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg",
+      "destaque": false,
+      "data": "2025-12-02"
+    },
+    {
+      "id": "cul5",
+      "titulo": "Festival de Cannes 2025 Anuncia Competição com Recorde de Filmes Dirigidos por Mulheres",
+      "descricao": "Seleção oficial do prestigiado festival francês traz 8 filmes dirigidas por mulheres, um marco histórico na busca por maior igualdade de gênero no cinema.",
+      "conteudo": "A organização do Festival de Cannes divulgou a lista de filmes que concorrerão à Palma de Ouro em sua 78ª edição, marcando um recorde significativo: oito das 20 produções na competição principal são dirigidas por mulheres. Entre as cineastas selecionadas estão nomes consagrados como a francesa Audrey Diwan e a americana Kelly Reichardt, além de novas vozes promissoras. A presidente do júri, a atriz e diretora italiana Alba Rohrwacher, celebrou a notícia: \"É um sinal de que os ventos estão mudando, ainda que lentamente. O talento não tem gênero, e a seleção deste ano reflete isso com força\". O festival, que acontece em maio, também terá uma mostra especial dedicada a documentários sobre mudanças climáticas. A expectativa é de que a edição de 2025 seja uma das mais diversas da história do evento.",
+      "categoria": "Cultura & Entretenimento",
+      "autor": "Juliana Almeida",
+      "imagem_pincipal": "https://images.pexels.com/photos/66134/pexels-photo-66134.jpeg",
+      "destaque": false,
+      "data": "2025-11-30"
     }
   ],
   "usuarios": [
@@ -39,5 +72,18 @@
       "admin": false
     }
   ],
-  "favoritos": []
+  "favoritos": [
+    {
+      "id": "4795",
+      "usuarioId": 1,
+      "noticiaId": "tec9",
+      "data": "2025-12-06"
+    },
+    {
+      "id": "bd89",
+      "usuarioId": 1,
+      "noticiaId": "f1a7",
+      "data": "2025-12-06"
+    }
+  ]
 }

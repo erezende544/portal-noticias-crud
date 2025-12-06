@@ -1,1 +1,1 @@
-export const API_BASE = "https://effdd743-2e9e-49d5-bb9a-ff660046a048-00-1qnb66fffuyko.janeway.replit.dev/";
+export const API_BASE = "https://effdd743-2e9e-49d5-bb9a-ff660046a048-00-1qnb66fffuyko.janeway.replit.dev/" || "http://localhost:3030/";
