@@ -1,6 +1,6 @@
 import { API_BASE } from './utils.js';
 
-// Verificar se tem ID na URL (modo edição)
+// Pegar ID da notícia da URL
 const urlParams = new URLSearchParams(window.location.search);
 const noticiaId = urlParams.get('id');
 const isEditMode = !!noticiaId;
@@ -15,26 +15,20 @@ const autorInput = document.getElementById('autor');
 const imagemInput = document.getElementById('imagem_pincipal');
 const destaqueInput = document.getElementById('destaque');
 const idHiddenInput = document.getElementById('id');
-const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
-const tituloPagina = document.querySelector('title');
+const submitBtn = document.getElementById('btnSalvar');
 const pageTitle = document.querySelector('h2.text-center');
+const tituloPagina = document.querySelector('title');
 
-// Carregar dados da notícia se for modo edição
+// Função para carregar notícia no modo edição
 async function carregarNoticiaParaEdicao() {
-    if (!noticiaId || !form) return;
+    if (!isEditMode || !form) return;
 
     try {
-        console.log(`Carregando notícia ID: ${noticiaId} de ${API_BASE}noticias/${noticiaId}`);
         const response = await fetch(`${API_BASE}noticias/${noticiaId}`);
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
-
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const noticia = await response.json();
-        console.log('Notícia carregada:', noticia);
 
-        // Preencher campos do formulário
+        // Preencher campos
         idHiddenInput.value = noticia.id || '';
         tituloInput.value = noticia.titulo || '';
         descricaoInput.value = noticia.descricao || '';
@@ -44,32 +38,25 @@ async function carregarNoticiaParaEdicao() {
         imagemInput.value = noticia.imagem_pincipal || noticia.imagem_principal || '';
         destaqueInput.checked = noticia.destaque || false;
 
-        // Mudar texto do botão e título da página
+        // Atualizar botão e título
         if (submitBtn) {
             submitBtn.textContent = 'Atualizar Notícia';
             submitBtn.classList.remove('btn-primary');
-            submitBtn.classList.add('btn-warning');
+            submitBtn.classList.add('btn-primary');
         }
-
-        if (tituloPagina) {
-            tituloPagina.textContent = `Editar: ${noticia.titulo.substring(0, 30)}...`;
-        }
-
-        if (pageTitle) {
-            pageTitle.textContent = 'Editar Notícia';
-        }
+        if (pageTitle) pageTitle.textContent = 'Editar Notícia';
+        if (tituloPagina) tituloPagina.textContent = `Editar: ${noticia.titulo.substring(0, 30)}...`;
 
     } catch (error) {
         console.error('Erro ao carregar notícia:', error);
-        alert('Erro ao carregar notícia para edição. Verifique o console.');
+        alert('Erro ao carregar notícia para edição. Veja o console.');
     }
 }
 
-// Salvar ou atualizar notícia
+// Função para salvar ou atualizar notícia
 async function salvarNoticia(event) {
     event.preventDefault();
 
-    // Verificar se usuário é admin
     const isAdmin = localStorage.getItem('LOGGED_USER_ADMIN') === 'true';
     if (!isAdmin) {
         alert('Apenas administradores podem gerenciar notícias.');
@@ -77,46 +64,32 @@ async function salvarNoticia(event) {
         return;
     }
 
-    // Coletar dados do formulário
     const noticiaData = {
         titulo: tituloInput.value.trim(),
         descricao: descricaoInput.value.trim(),
         conteudo: conteudoInput.value.trim(),
         categoria: categoriaInput.value.trim(),
-        autor: autorInput.value.trim(),
+        autor: autorInput.value.trim() || localStorage.getItem('LOGGED_USER_NAME') || 'Anônimo',
         imagem_pincipal: imagemInput.value.trim(),
         destaque: destaqueInput.checked,
         data: new Date().toISOString().split('T')[0]
     };
 
-    // Validações básicas
     if (!noticiaData.titulo || !noticiaData.descricao || !noticiaData.conteudo) {
         alert('Título, descrição e conteúdo são obrigatórios!');
         return;
     }
 
-    // Se tiver autor vazio, usar nome do usuário logado
-    if (!noticiaData.autor) {
-        noticiaData.autor = localStorage.getItem('LOGGED_USER_NAME') || 'Anônimo';
-    }
-
-    console.log('Enviando dados:', noticiaData);
-
     try {
-        let response;
         const url = isEditMode ? `${API_BASE}noticias/${noticiaId}` : `${API_BASE}noticias`;
-
-        response = await fetch(url, {
+        const response = await fetch(url, {
             method: isEditMode ? 'PUT' : 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(noticiaData)
         });
 
         if (response.ok) {
-            const mensagem = isEditMode ? 'Notícia atualizada com sucesso!' : 'Notícia criada com sucesso!';
-            alert(mensagem);
+            alert(isEditMode ? 'Notícia atualizada com sucesso!' : 'Notícia criada com sucesso!');
             window.location.href = 'index.html';
         } else {
             const errorData = await response.json();
@@ -128,15 +101,13 @@ async function salvarNoticia(event) {
     }
 }
 
-// Configurar formulário
+// Inicializar formulário
 function configurarFormulario() {
-    if (form) {
-        form.addEventListener('submit', salvarNoticia);
-        carregarNoticiaParaEdicao();
-    } else {
-        console.log('Formulário não encontrado nesta página');
-    }
+    if (!form) return;
+
+    form.addEventListener('submit', salvarNoticia);
+    carregarNoticiaParaEdicao();
 }
 
-// Inicializar quando o DOM carregar
+// Executar quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', configurarFormulario);
