@@ -1,218 +1,203 @@
-# Portal de Notícias - CRUD Completo com JSON Server
+# Portal de Notícias - README
 
-## 📋 Sobre o Projeto
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26.svg)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6.svg)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JSON Server](https://img.shields.io/badge/JSON%20Server-0A0A0A.svg)](https://github.com/typicode/json-server)
 
-Este projeto é um portal de notícias completo desenvolvido como parte da disciplina de Desenvolvimento de Interfaces Web. A aplicação implementa um CRUD (Create, Read, Update, Delete) completo utilizando JSON Server como backend simulado, proporcionando uma experiência próxima de um ambiente de desenvolvimento profissional.
+Portal de Notícias completo com sistema de autenticação, CRUD de notícias, favoritos e calendário de eventos.
+
+## ✨ Funcionalidades
+
+- **🔐 Autenticação de Usuários** - Login e cadastro com diferentes níveis de acesso
+- **📰 CRUD de Notícias** - Criação, edição e exclusão de notícias (apenas administrador)
+- **⭐ Sistema de Favoritos** - Usuários podem salvar notícias favoritas
+- **📅 Calendário de Eventos** - Visualização de notícias em formato de calendário
+- **📱 Design Responsivo** - Adaptado para mobile, tablet e desktop
+- **🔒 Proteção de Rotas** - Controle de acesso baseado em permissões
+
+## 🧪 Guia de Avaliação do Sistema
+
+A seguir estão todas as instruções necessárias para executar, testar e validar o Portal de Notícias, tanto utilizando a API hospedada no Replit quanto rodando localmente.
+
+---
+
+## 🚀 1. Como Executar o Projeto
+
+### ✔️ **Opção A – Usar o Replit (API Online)**  
+Caso prefira utilizar um backend pronto, basta copiar o conteúdo do `db.json` e colar na sua própria instância do Replit com JSON Server.
+
+---
+
+### ✔️ **Opção B – Executar Localmente**
+
+#### **Requisitos**
+- Node.js LTS  
+- NPM ou Yarn  
+
+#### **Passo a passo**
+```bash
+# 1. Instalar dependências
+npm install
+
+# 2. Iniciar o servidor JSON Server
+json-server --watch db/db.json --port 3030
+```
+
+A API ficará disponível em:
+👉 **[http://localhost:3030](http://localhost:3030)**
+
+---
+
+## ⚙️ 2. Configuração da API no Projeto
+
+O arquivo `utils.js` já possui uma lógica que permite alternar entre API remota ou local:
+
+```js
+export const API_BASE =
+    "https://effdd743-2e9e-49d5-bb9a-ff660046a048-00-1qnb66fffuyko.janeway.replit.dev/"
+    || 
+    "http://localhost:3030/";
+```
+
+Se o avaliador quiser utilizar sua própria URL do Replit, basta substituir o endereço acima.
+
+---
+
+## 👤 3. Contas para Testes
+
+### **Administrador**
+
+* **E-mail:** [admin@email.com](mailto:admin@email.com)
+* **Senha:** 123456
+
+### **Usuário Comum**
+
+* **E-mail:** [usuario@email.com](mailto:usuario@email.com)
+* **Senha:** 123456
+
+---
+
+## 📝 4. Funcionalidades a Serem Testadas
+
+### **1. Cadastro de Usuário**
+
+* Criar nova conta
+* Realizar login com a nova conta
+
+---
+
+### **2. Login**
+
+* Testar login do usuário comum
+* Testar login do administrador
+
+---
+
+### **3. CRUD de Notícias (Apenas Administrador)**
+
+O admin deve conseguir:
+
+* Criar notícia
+* Editar notícia
+* Excluir notícia
+* Visualizar todas as notícias
+
+Validar:
+
+* Campos obrigatórios
+* Mensagens de erro
+* Mensagens de sucesso
+
+---
+
+### **4. Visualização de Notícias**
+
+* Listar todas as notícias
+* Abrir notícia individual
+* Conferir data, autor e categoria
+
+---
+
+### **5. Favoritos**
+
+O usuário deve conseguir:
+
+* Adicionar aos favoritos
+* Remover dos favoritos
+* Ver lista de favoritos
+
+---
+
+### **6. Proteção de Rotas**
+
+Validar que:
+
+* Usuário comum **não** acessa páginas administrativas
+* Administrador acessa tudo normalmente
+
+---
+
+### **7. Responsividade**
+
+Testar o site em:
+
+* Mobile
+* Tablet
+* Desktop
+
+---
+
+### **8. Calendário de Notícias**
+
+* Carregamento dos eventos
+* Exibição correta no calendário
+* Interação ao clicar no evento
+
+---
+
+## ✅ 5. Conclusão da Avaliação
+
+Ao final, o avaliador deve confirmar que:
+
+* Todo o fluxo de notícias funciona
+* CRUD do admin está 100% operacional
+* Favoritos funcionam sem erro
+* Login e permissões estão corretos
+* O sistema funciona via Replit **ou** local
+* Interface responsiva e funcional
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+portal-noticias/
+├── db/
+│   └── db.json          # Banco de dados JSON
+├── css/
+│   ├── styles.css       # Estilos principais
+│   └── calendar.css     # Estilos do calendário
+├── js/
+│   ├── utils.js         # Configurações da API
+│   ├── auth.js          # Autenticação
+│   ├── news.js          # CRUD de notícias
+│   ├── calendar.js      # Calendário de eventos
+│   └── favorites.js     # Sistema de favoritos
+├── index.html           # Página inicial
+├── login.html           # Login
+├── register.html        # Cadastro
+├── news.html            # Lista de notícias
+├── admin.html           # Painel administrativo
+└── README.md            # Documentação
+```
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+), Bootstrap 5.3
-- **Backend**: JSON Server
-- **Ferramentas**: Node.js, Git, GitHub
-- **Protocolo**: HTTP/REST API
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+- **Backend:** JSON Server (API REST)
+- **Autenticação:** Session Storage
+- **Calendário:** FullCalendar.js
+- **Ícones:** Font Awesome
 
-## 🎯 Funcionalidades
-
-- **📰 Listagem de Notícias** - Exibe todas as notícias em layout de grid responsivo (3 colunas desktop, 2 tablet, 1 mobile)
-- **⭐ Destaques** - Carrossel com notícias em destaque
-- **🔍 Detalhes** - Página individual para cada notícia
-- **📝 Cadastro** - Formulário para criar novas notícias
-- **✏️ Edição** - Formulário para editar notícias existentes
-- **🗑️ Exclusão** - Remoção de notícias com confirmação
-- **📱 Responsivo** - Layout adaptável para desktop, tablet e mobile
-
-## 📁 Estrutura do Projeto
-portal-noticias-crud/
-├── public/ # Frontend
-│ ├── index.html # Página inicial
-│ ├── detalhes.html # Página de detalhes
-│ ├── cadastro_noticias.html # Formulário CRUD
-│ ├── header.html # Componente de navegação
-│ ├── assets/
-│ │ ├── css/
-│ │ │ └── styles.css # Estilos customizados
-│ │ └── js/
-│ │ └── app.js # Lógica da aplicação
-├── db/
-│ └── db.json # Banco de dados JSON
-├── package.json # Dependências do projeto
-└── README.md # Documentação
-
-
-## 🗃️ Estrutura de Dados (db.json)
-
-```json
-{
-  "noticias": [
-    {
-      "titulo": "Prefeitura Lança Novo Plano de Mobilidade Urbana",
-      "descricao": "Novo plano visa melhorar o transporte público e reduzir o trânsito na cidade.",
-      "conteudo": "A Prefeitura apresentou nesta segunda-feira um novo plano de mobilidade urbana que inclui corredores exclusivos de ônibus, ciclovias e a requalificação de vias principais...",
-      "categoria": "Cidades",
-      "autor": "Joana Ribeiro",
-      "imagem_pincipal": "https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg",
-      "destaque": false,
-      "data": "2025-11-01",
-      "id": "1"
-    },
-    {
-      "titulo": "Tecnologia 6G Está em Desenvolvimento",
-      "descricao": "Pesquisadores anunciam avanços na próxima geração de redes móveis.",
-      "conteudo": "Universidades e empresas de telecomunicação já estão testando tecnologias que poderão compor a infraestrutura do 6G...",
-      "categoria": "Tecnologia",
-      "autor": "Carlos Mendes",
-      "imagem_pincipal": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
-      "destaque": true,
-      "data": "2025-11-01",
-      "id": "2"
-    },
-    {
-      "titulo": "Festival de Música Reúne Mais de 50 Mil Pessoas",
-      "descricao": "Evento cultural movimentou o final de semana com atrações nacionais e internacionais.",
-      "conteudo": "Durante três dias, o festival contou com mais de 40 artistas e promoveu atividades culturais e gastronômicas...",
-      "categoria": "Cultura",
-      "autor": "Ana Clara Silva",
-      "imagem_pincipal": "https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg",
-      "destaque": false,
-      "data": "2025-11-01",
-      "id": "3"
-    }
-  ]
-}
-
-
-## 🗃️ Estrutura de Dados (db.json)
-
-```json
-{
-  "noticias": [
-    {
-      "titulo": "Prefeitura Lança Novo Plano de Mobilidade Urbana",
-      "descricao": "Novo plano visa melhorar o transporte público e reduzir o trânsito na cidade.",
-      "conteudo": "A Prefeitura apresentou nesta segunda-feira um novo plano de mobilidade urbana que inclui corredores exclusivos de ônibus, ciclovias e a requalificação de vias principais...",
-      "categoria": "Cidades",
-      "autor": "Joana Ribeiro",
-      "imagem_pincipal": "https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg",
-      "destaque": false,
-      "data": "2025-11-01",
-      "id": "1"
-    },
-    {
-      "titulo": "Tecnologia 6G Está em Desenvolvimento",
-      "descricao": "Pesquisadores anunciam avanços na próxima geração de redes móveis.",
-      "conteudo": "Universidades e empresas de telecomunicação já estão testando tecnologias que poderão compor a infraestrutura do 6G...",
-      "categoria": "Tecnologia",
-      "autor": "Carlos Mendes",
-      "imagem_pincipal": "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
-      "destaque": true,
-      "data": "2025-11-01",
-      "id": "2"
-    },
-    {
-      "titulo": "Festival de Música Reúne Mais de 50 Mil Pessoas",
-      "descricao": "Evento cultural movimentou o final de semana com atrações nacionais e internacionais.",
-      "conteudo": "Durante três dias, o festival contou com mais de 40 artistas e promoveu atividades culturais e gastronômicas...",
-      "categoria": "Cultura",
-      "autor": "Ana Clara Silva",
-      "imagem_pincipal": "https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg",
-      "destaque": false,
-      "data": "2025-11-01",
-      "id": "3"
-    }
-  ]
-}
-
-
-Método	Endpoint	Descrição
-GET	/noticias	Lista todas as notícias
-GET	/noticias/:id	Busca notícia por ID
-POST	/noticias	Cria nova notícia
-PUT	/noticias/:id	Atualiza notícia existente
-DELETE	/noticias/:id	Remove notícia
-
-🚀 Como Executar o Projeto
-Pré-requisitos
-Node.js instalado
-Git para controle de versão
-
-📸 Screenshots
-<!-- ADICIONE SEUS PRINTS AQUI -->
-
-## 📸 Screenshots
-
-<!-- ADICIONE SEUS PRINTS AQUI -->
-*Página inicial 
-![Página Inicial](./public/assets/images/print-tela-inicial-01.png)
-
-*Página inicial com grid de notícias e carrossel de destaques*
-![Página Inicial - Grid Notícias](./public/assets/images/print-tela-inicial-grid-noticias.png)
-
-*Página de detalhes com conteúdo completo da notícia*
-![Página de Detalhes](./public/assets/images/print-detalhe-noticia.png)
-
-*Formulário para editar notícias*
-![Formulário de Ediçaõ de Notícia](./public/assets/images/print-edição-noticia.png
-
-*Formulário para cadastro de notícias*
-![Formulário de cadastro de notícias](./public/assets/images/print-criacao-noticia.png)
-
-*Abas Network mostrando requisições HTTP para a API*
-![Testes da API](./public/assets/images/print-rede.png)
-
-
-📝 Controle de Versão
-Tags e Commits
-v1.0 - chore: montagem do ambiente de desenvolvimento inicial
-
-v2.0 - chore: Testes da API para a estrutura noticias
-
-v3.0 - feat: dinâmica de CRUD para noticias com JSONServer
-
-v4.0 - docs: Alterações do README.md
-
-🔧 Funcionalidades Técnicas Implementadas
-API Fetch: Consumo assíncrono da API RESTful
-
-CRUD Completo: Create, Read, Update, Delete
-
-Parâmetros URL: Passagem de IDs via query string
-
-Responsividade: Media queries para diferentes dispositivos
-
-Validação de Formulários: Front-end validation
-
-Navegação Fluida: Transições entre páginas sem recarregamento
-
-JSON Server: Backend simulado com API RESTful
-
-
-🧪 Testes Realizados
-Testes de API com Thunder Client/Postman:
-✅ GET /noticias - Listagem de todas as notícias
-
-✅ GET /noticias/1 - Busca de notícia específica
-
-✅ POST /noticias - Criação de nova notícia
-
-✅ PUT /noticias/1 - Atualização de notícia
-
-✅ DELETE /noticias/1 - Exclusão de notícia
-
-Testes de Funcionalidade:
-✅ Listagem responsiva de notícias
-
-✅ Navegação entre páginas
-
-✅ Formulários de criação e edição
-
-✅ Exclusão com confirmação
-
-✅ Carrossel de destaques funcionando
-
-👨‍💻 Desenvolvedor
-Eduardo Machado
-📧 eduardo.machado@sga.pucminas.br
-🎓 Análise e Desenvolvimento de Sistemas - PUC Minas
-📅 2025/2 - Semipresencial
-🏫 Disciplina: Desenvolvimento de Interfaces Web
-
+**Desenvolvido por Eduardo Rezende Machado**
