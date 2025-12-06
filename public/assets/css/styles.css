@@ -950,3 +950,70 @@ html {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(13, 110, 253, 0.1);
 }
+
+/* ===== ESTILIZAÇÃO API CALENDÁRIO ===== */
+@media (max-width: 768px) {
+  #calendar {
+    margin: 0 8px !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  .fc .fc-toolbar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fc-daygrid-day-number {
+    font-size: 12px !important;
+  }
+
+  .fc-daygrid-event {
+    font-size: 12px !important;
+    padding: 2px 4px !important;
+    border-radius: 4px;
+  }
+
+  /* toolbar inteira em linha */
+  .fc .fc-toolbar.fc-header-toolbar {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    align-content: stretch;
+  }
+
+  /* bloco da esquerda: prev / next / hoje */
+  .fc-toolbar-chunk:nth-child(1) {
+    order: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* título central */
+  .fc-toolbar-chunk:nth-child(2) {
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* bloco da direita: Mês / Lista / etc */
+  .fc-toolbar-chunk:nth-child(3) {
+    order: 3;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* diminuir botões para não estourarem a largura */
+  .fc .fc-button {
+    padding: 4px 8px !important;
+    font-size: 12px !important;
+  }
+}

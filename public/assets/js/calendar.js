@@ -47,15 +47,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }));
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: "dayGridMonth",
         locale: "pt-br",
+        initialView: "dayGridMonth",
         headerToolbar: {
             left: "prev,next today",
             center: "title",
-            right: "dayGridMonth,listWeek"
+            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
         },
         events
     });
+
 
     calendar.render();
 });
